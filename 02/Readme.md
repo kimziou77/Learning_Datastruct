@@ -37,6 +37,8 @@ Quiz 풀어보기
 - - - -
 
 ## Class와 Parameter  
+<br>
+
 ### `Default Argument`  
 > Constructor을 다양하게 만드는게 일반적이나, 귀찮으므로 `Default Argument`를 사용한다.
 ```cpp
@@ -47,6 +49,10 @@ int date_check(int year, int month=1, int day=1);
 - data_check(2000, 7) == data_check(2000, 7, 1)
 - data_check(2000) == data_check(2000, 1, 1)
 
+
+<br>
+
+
 ### `Value Parameter`  
 > 기본적으로 전달되는 인자인것 같다  
 
@@ -55,12 +61,18 @@ int example(int a, int b);
 ```
 `Actual Parameter`의 사이즈가 **작고** , <u>값을 변경할 필요가 없을 때</u> 사용한다.
 
+<br>
+
+
+
 ### `Reference Parameter`
 > 함수body 에서 이 인자들을 사용한다면 전달 받은 값에 직접 접근 할 수 있다.
 ```cpp
 int example (int& a, int& b);
 ```
 `Actual Parameter`의 값을 변경해야 할 때 사용한다.
+
+<br>
 
 ### `Const Reference Parameter`
 >  `Reference Parameter`와 동일하지만, parameter가 함수호출 후에 절대로 **변하지 않는다**는 것을 보증해준다.
