@@ -146,7 +146,7 @@ bag operator + (const bag& b1, const bag& b2){
     return answer;
 }
 ```
-### 8. Operator "+="
+#### 8. Operator "+="
 ```cpp
 void bag::operator+= (const bag& addend){
     if (used + addend.used > capacity)
