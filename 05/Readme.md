@@ -43,6 +43,9 @@ const node * link() const { return link_field; }
 // const node* 를 반환하는 const link 함수!!
 ```
 
+---
+
+### Node를 기반으로 한 Linked List
 
 ## `A Linked List Toolkit!!!!`
 
@@ -172,7 +175,9 @@ void list_clear(node *& head_ptr){
 **Linked list Bag class의 단점**  
 random access 불가능하다(효율성측면)
 
+<br>
 
+### *이제 이 `Linked List` 를 사용한 가방을 구현해보자!*
 ## Bag class with a LInked List
 class implementation
 - Constructor / Destructor
