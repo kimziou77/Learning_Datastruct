@@ -54,6 +54,23 @@ void bag::remove(const value_type& target){
     data[index]= data[used];
     return true;
 }
-47page 작성중
+
+
+void bag::operator+= (const bag& addend){
+    assert(size() + addend.size() <= CAPACITY);
+    copy(addend.data, addend.data + addend.used, data+used);
+    /* (Beginning location, Ending location(not copied), Destination) */
+    used += addend.used;
+}
+
 ```
+<br>
+
+
+# 요약
+  - `container class`는 `collection item을 보관할 수 있는 클래스 이다.
+  - 컨테이너 클래스는 C++의 클래스로 구현될 수 있다.
+  - 클래스는 `헤더파일`(doc와 class definition) 과 `구현파일`(멤버함수의 구현을 포함)  로 구현되었다.
+
 Quiz 풀어보기
+
