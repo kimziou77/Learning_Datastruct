@@ -1,4 +1,5 @@
 # Linked Lists
+ㅠㅠ 이번장은 너무 길어서 다시한번 읽어봐야할 필요가 있따 ㅜㅠㅜ
 ## Linked List  
 > 물리적으로는 떨어져 있지만 논리적으로 연속, 따라서 메모리 관리가 효율적임.
 
@@ -182,19 +183,114 @@ class implementation
 - `insert` function
 - " + " Operator
 
-### 1. Constructor
+### 1. Constructor / Destructor
 ```cpp
+// Default Constructor
+bag::bag(){
+    head_ptr = NULL;
+    many_nodes = 0;
+}
 
+// Copy constructor
+bag::bag(const bag& source){
+    node *tail_ptr;
+    list_copy(source.head_ptr, head_ptr, tail_ptr);
+    many_nodes = source.many_nodes;
+}
+
+// Destructor
+bag::~bag(){
+    list_clear(head_ptr);
+    //many_nodes=0; not necessary
+}
+```
+### 2. Operator " = / +="
+```cpp
+bag& bag::operator = (const bag &source){
+    node * tail_ptr;
+    if (this == &source) reutnr *this;
+    list_clear(head_ptr);
+    list_copy(source.head_ptr, head_ptr, tail_ptr);
+    many_nodes = source.many_nodes;
+    return *this;
+}
+
+void bag::operator +=(const bag& addend){
+    node * copy_tail_ptr, copy_head_ptr;
+    if (addend.many_nodes>0){
+        list_copy (addend.head_ptr, copy_head_ptr, copy_tail_ptr);
+        copy_tail_ptr->set_link (head_ptr);
+        head_ptr = copy_head_ptr;
+        many_nodes += addend.many_noes;
+    }
+}
+```
+### 3. Erase
+```cpp
+bool bag::erase_one(const value_type & target){
+    node * target_ptr;
+    target_ptr = list_search (head_ptr, target);
+    if (target == NULL) return false;
+    target_ptr -> set_data(head_ptr->data());
+    list_head_remove (head_ptr);
+    many_nodes--;
+    return true;
+}
+```
+### 4. Count
+```cpp
+bag::size_type bag::count(const value_type & target)const{
+    size_type answer = 0;
+    const node* cursor;
+    cursor =list_search(head_ptr, target);
+    while(cursor!=NULL){
+        answer++;
+        cursor = cursor -> link();
+        cursor = list_search(cursor, target);
+    }
+    return answer;
+}
+```
+### 5. Grap
+```cpp
+bag::value_type bag::grap(){
+    size_type i;
+    const node * cursor;
+    assert(size()>0);
+     i = (rand() % size())+1;
+     cursor = list_locate(head_ptr, i);
+     return cursor->data();
+}
+```
+### 6. Insert
+```cpp
+void bag::insert(const value_type & entry){
+    list_head_insert(head_ptr, entry);
+    many_nodes++;
+}
 ```
 
+## `Dynamic Arrays` vs `Linked List` vs `Doubly LinkedList`
+- 배열은 random access에 제일 좋다.
+- 연결리스트는 삽입,삭제에 좋다
+- Resizing can be inefficient for a dynamic array
 
+
+
+
+
+<br><br><br>
 
 - - -
+이건 static 가방의 bag인데 참고 ㅎㅎㅎ
+<br>
+<br>
+
 ```cpp
 class bag{
 
-    node * head_ptr;      //int data[CAPACITY];
-    size_type many_nodes; //size_t used;
+        int data[CAPACITY];  //node * head_ptr;
+        size_t used; // size_type many_nodes;
 
     public:
         static const size_t CAPACITY = 20;
