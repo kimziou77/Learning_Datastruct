@@ -281,9 +281,6 @@ void bag::insert(const value_type & entry){
 - Resizing can be inefficient for a dynamic array
 
 
-
-
-
 <br><br><br>
 
 - - -
