@@ -25,7 +25,7 @@ node * head_ptr; // 첫번째 노드를 계속해서 tracking 할 수 있는 변
 node * tail_ptr; // List의 가장 마지막 노드를 가리키는 포인터 
 ```
 Empty List 에는 헤드포인터에 NULL이 저장되어있다.  
-constant NULL은 `cstdlib`에 들어가있다???? 
+constant NULL은 `cstdlib`에 들어가있다.
 
 ### Node Constructor
 ```cpp
@@ -280,35 +280,3 @@ void bag::insert(const value_type & entry){
 - 연결리스트는 삽입,삭제에 좋다
 - Resizing can be inefficient for a dynamic array
 
-
-
-
-
-<br><br><br>
-
-- - -
-이건 static 가방의 bag인데 참고 ㅎㅎㅎ
-<br>
-<br>
-
-```cpp
-class bag{
-
-        int data[CAPACITY];  //node * head_ptr;
-        size_t used; // size_type many_nodes;
-
-    public:
-        static const size_t CAPACITY = 20;
-        bag();
-
-        void insert(const value_type& new_entry);
-        /* precondition : 가방은 꽉자있지 않다. */
-        /* postcondition : 가방에 new_entry가 추가된다. */
-
-        std::size_t size() const;
-        /* postcondition : 가방 안에 있는 정수 개수를 반환한다. */
-
-        void remove(const value_type& target);
-        /* postcondition : 타겟이 가방안에 있으면 삭제, 아니면 변하지 않는다. */
-}
-```
