@@ -64,7 +64,6 @@ operator++ ( int ) : Postfix (p++)
         return original;
     }
 ```
-Q. 왜 얘는 반환타입이 node_iterator고 위는 &이거일까..?
 
 
 operator==(const node_iterator other) const;
@@ -79,4 +78,3 @@ operator!=(const node_iterator other) const;
         return current!=otehr.current;
     }
 ```
-Q. 재귀인가 이거는..? 아니면 const가 아닌 비교연산자를 불러온건가?
