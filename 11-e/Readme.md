@@ -56,7 +56,7 @@ B-Tree의 각 요소는 배열에 정렬되어 보관되어있다.
 
 #### *Rule 5:*
 `leaf node`가 아닌 모든 노드에 대해서:  
-(a) An entry at index i is greater than all the entries in subtree number i of the node
+(a) An entry at index i is greater than all the entries in subtree number i of the node  
 (b) An entry at index i is samller than all the entries in subtree number i+1 of the node
 
 \+ traversial을 잘 구현하면 정렬된 상태로 출력 가능하다.
