@@ -14,12 +14,12 @@
 #### 힙에 새로운 요소 추가하기
 1. Put the new node in the next available spot
 2. Push the new node upward, swapping with its parent until the new node reaches an acceptable location  
-   -> this process of pushing the new node upward is called *reheapification upward*
+   -> this process of pushing the new node upward is called ***reheapification upward***
 
 #### 힙에서부터 요소 제거하기
 1. Move the last node onto the root
 2. Push the out-of-place node downward, swapping with its larger child until the new node reaches an acceptable location  
-   -> The process of pushing the new node downward is called *reheapification downaward.*
+   -> The process of pushing the new node downward is called ***reheapification downaward.***
 
 #### 힙 구현하기
 같은 depth의 노드들은 인접한 index에 추가한다.
