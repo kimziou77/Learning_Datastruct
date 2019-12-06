@@ -5,7 +5,7 @@
 - 그래프는 비어있을 수 있음
 
 ### Undirected Graph
-- `edges`는 방향이 없다 (갈수도 올수도있음)
+- `edges`는 방향이 없다 (오고가고 가능)
 
 #### undirected state graphs
 **example** : Graph for game state  
@@ -267,3 +267,4 @@ Single-Source Shortest Path
 **variables**   
 - distance[ ] : 사이즈 n 짜리 int 배열
 - allowed_vertices : 정점들의 집합
+
