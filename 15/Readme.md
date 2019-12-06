@@ -268,3 +268,47 @@ Single-Source Shortest Path
 - distance[ ] : 사이즈 n 짜리 int 배열
 - allowed_vertices : 정점들의 집합
 
+## 다익스트라 알고리즘 - 수도코드  
+```
+1. 모든 distance 배열을 INF로 초기화 시킨다. 시작정점만 distacne=0
+2. allowed_vertices= {};
+3. for(allowd_size=1 ; allowed_size<n ; allowed_size++){  
+        step 3a;  
+        step 3b;  
+        step 3c;  
+   }
+
+3a {
+    next= an index of the distance array such that
+    next is not in the allowed_vertices
+    and distance[next] is the minimum among all tentative distances
+}
+3b{
+    add next to allowed_vertices
+}
+3c{
+    for(v=0;v<n;v++){
+        if((v is not in allowe_vertices) and (there is an edge from next to v)){
+            sum = distance[next]+weight(next,v);
+            if(sum<distance[v])
+                distance[v]=sum;
+        }
+    }
+}
+```
+need to keep track of which vertex was the next vertex when the distance[v] was updated
+```cpp
+if(sum<distance[v]){
+    distance[v]= sum;
+    predecessor[v]=next;
+}
+```
+the following code will print out the shortest path from the start vertex to v in reverse order
+```cpp
+vertex=v;
+cout<<vertex<<endl;
+while(vertex!=start){
+    vertex=predecessor[vertex];
+    cout<<vertex<<endl;
+}
+```
