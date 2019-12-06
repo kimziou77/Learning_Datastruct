@@ -92,23 +92,25 @@ public :
   
 (x)는 수업때 다루지 않는 함수들임.
 
-#### count function(searching for an item in a B-tree)  
-//Q. 근데 이게, 수를 세는 함수 아닌가 왜 ..  
-찾으면 1, 못찾으면 0을 반환한다.  
+### count function(searching for an item in a B-tree)  
+찾으면 1, 못찾으면 0을 반환한다.  //중복을 허용하지 않기때문에 1 아님 0  
 
 의사코드 
-1. 루트에서, `data[i]`>=`target` 를 만족하는 가장 처음 나오는 index를 찾는다.
+1. 루트에서, `data[i]`>=`target` 를 만족하는 가장 처음 나오는 index를 찾는다. (만약 찾는것에 실패하면 i=data_count; //없는 index값)
 2. if(data[i]에서 target을 찾으면) return 1;
 3. else if(루트가 자식이 없으면) return 0;
-4. else return subset[i]->count(target);
+4. else return subset[i]->count(target); //있다면 왼쪽한테 있을테니 책임전가한다.
 
-### insert function
+## insert function - 중요 시험에 나온다 그랬음
 private :  
-`loose_insert`  
-add a new entry to the B-Tree with the possibility that the root may have MAXIMUM+1 entries
+`loose_insert`  대충넣고  
+<!-- add a new entry to the B-Tree with the possibility that the root may have MAXIMUM+1 entries -->
+루트가 MAXIMUM+1이 될 것을 감안하고 insert 해준다.
 
-`fix_excess`  
+`fix_excess`  문제해결  
 take care of the extra entry (if any) in the root of a subtree
+ 
+->divide and conquer식 해결방법
 
 #### loose_insert function
 root may have one extra entry  
@@ -149,7 +151,54 @@ To fix the root of entire tree :
 ### Erase function
 private :  
 `loose_erase`  
-loose_erase removes an entry from the B-tree with the possibility that the root may have 0 entries (but with one child) or the root of an internal
+loose_erase removes an entry from the B-tree with the possibility that the root may have 0 entries (but with one child) or the root of an internal subtree has fewer than MINIMUM entries.
 
 `fix_shortage`  
+fix_shortage will take care of the shortage of an entry (if any) in the root of a subtree
 
+### erase  
+Pseudo-Code for **erase**
+```
+1. if(!loose_erase(target))
+        retirm false //since target wasn't removed
+2. if((data_count ==0) && (child_count==1))
+        fix the root of the entire tree
+3. return true
+```
+
+#### loose_erase function
+removes an entry from a B-tree in such a way that a **root may have one entry too few**  
+<br>
+
+*Pseudo-Code for loose_erase function*
+```
+1    in the root, find the first index i such that data[i] >= entry.
+
+2a   if(the root has no child and target found)
+        return false;
+2b   if(the root has no child and target found)
+        remove the target from the data array and return true;
+2cd  Else // the root has children {
+    some work to do
+}
+
+some work to do :
+2c {
+    if the root has children and target not found
+    bool b = subset[i]->loose_erase(target);
+    Check if the root of subset[i] has MINIMUM-1 entries
+    if so, fix the subset[i] using the fix_shortage function;
+}
+
+2d{
+    if the foot has children and target found
+        subset[i]->remove_biggest(data[i]);
+    if(subset[i]->data_count<MIINIMUM)
+        fix_shortage(i);
+    return true;
+}
+
+```
+### fix_shortage function
+subset[i] has only MINIMUM-1 entries :
+Case 1 Transfer an extra entry from subset[i-1]
