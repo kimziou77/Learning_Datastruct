@@ -352,5 +352,3 @@ STL에서는 priority_queue<Item>과 같이 사용한다.
 
 ### Deque : Double Ended Queue
 deque<int> dq;
-
-# //다시 좀더 나중에 정리할 것
